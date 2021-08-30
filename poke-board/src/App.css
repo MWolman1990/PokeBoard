@@ -1,0 +1,25 @@
+.header-row {
+  height: 60px
+}
+
+.main {
+  align-items: stretch;
+  height: calc(100% - 120px);
+}
+
+.display-container {
+  height: 100%;
+}
+@media(max-width: 768px) {
+  .display-container {
+    height: 70%;
+  }
+}
+
+.main-display {
+    height: 80%;
+}
+
+.pagination-bar {
+    height: 20%;
+}
