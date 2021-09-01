@@ -53,7 +53,7 @@ function App() {
       <div className="main row">
         <Sidebar currentPage={currentPage} setCurrentPage={setCurrentPage} doubleOption={doubleOption} setDoubleOption={setDoubleOption}/>
         <div className="col-md-10 display-container p-0">
-          <div className="main-display overflow-auto center d-flex justify-content-between flex-wrap px-3">
+          <div className="main-display overflow-auto center d-flex flex-wrap px-3">
             {
               displayPokemon.length > 0 &&
               displayPokemon.map((pokeData, i) => <PokeCard key={pokeData.id} data={pokeData}></PokeCard>)
@@ -65,7 +65,7 @@ function App() {
                 </div>
             </div>
           </div>
-          <div className="pagination-bar d-flex align-items-center overflow-auto border-top">
+          <div className="pagination-bar d-flex overflow-auto border-top">
             <Pagination pokemonCount={pokemonCount} changePage={changePage} currentPage={currentPage} doubleOption={doubleOption}/>
           </div>
         </div>

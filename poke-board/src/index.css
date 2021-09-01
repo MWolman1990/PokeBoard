@@ -3,8 +3,9 @@ body,
 #root,
 .App,
 .center,
-.side {
-  height: 100%;
+.side,
+.display-center {
+  height: 100vh;
 }
 
 @media(max-width: 768px) {

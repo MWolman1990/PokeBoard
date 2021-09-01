@@ -3,3 +3,23 @@
     float: left;
     margin: 1rem;
 }
+
+@media(max-width:576px) {
+    .card {
+        width: 100% !important;
+        justify-content: space-around !important;
+    }
+}
+
+@media(max-width:768px) {
+    .card {
+        width: 40%;
+        justify-content: space-around !important;
+    }
+}
+
+/* @media(max-width:768px) {
+    .card {
+        width: 50%
+    }
+} */

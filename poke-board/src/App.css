@@ -23,3 +23,19 @@
 .pagination-bar {
     height: 20%;
 }
+
+.center {
+  justify-content: space-between;
+}
+
+@media(max-width:768px) {
+  .center {
+      justify-content: space-around !important;
+  }
+}
+
+/* @media(max-width:768px) {
+  .card {
+      width: 50%
+  }
+} */
