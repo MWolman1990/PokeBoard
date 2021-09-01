@@ -11,7 +11,7 @@ const Sidebar = (props) => {
     const filteredTypes = useSelector(state => state.filter.filters).filteredTypes
 
     useEffect(async () => {
-        const results = await axios.get('http://localhost:3001/api/type', { data: types })
+        const results = await axios.get('/api/type', { data: types })
         
         dispatch(setTypes(results.data.results))
     }, [])
@@ -22,12 +22,12 @@ const Sidebar = (props) => {
 
     useEffect(async () => {
         if (doubleOption === true) {
-            const results2 = await axios.post(`http://localhost:3001/api/type/filtered/onlyboth`, { data: { filteredTypes, offset: ((currentPage*20)-20) } })
+            const results2 = await axios.post(`/api/type/filtered/onlyboth`, { data: { filteredTypes, offset: ((currentPage*20)-20) } })
             dispatch(setPokemon(results2.data.pokemon))
             dispatch(setPokemonCount(results2.data.count))
             setCurrentPage(1)
         } else {
-            const results = await axios.post(`http://localhost:3001/api/type/filtered`, { data: { filteredTypes, offset: ((currentPage*20)-20) } })
+            const results = await axios.post(`/api/type/filtered`, { data: { filteredTypes, offset: ((currentPage*20)-20) } })
             dispatch(setPokemon(results.data.pokemon))
             dispatch(setPokemonCount(results.data.count))
             setCurrentPage(1)

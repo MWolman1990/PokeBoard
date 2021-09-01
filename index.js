@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const request = require('request')
+const PORT = process.env.port || 5000
 require('dotenv').config()
 
 app.use(cors())
@@ -20,4 +21,4 @@ app.get('/', (req, res) => {
     res.send('Request successful 2')
 })
 
-app.listen(process.env.PORT, () => console.log(`Listening on port ${process.env.PORT}`))
+app.listen(PORT, () => console.log(`Listening on port ${PORT}`))

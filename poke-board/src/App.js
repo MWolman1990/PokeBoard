@@ -17,7 +17,7 @@ function App() {
   const filteredTypes = useSelector(state => state.filter.filters).filteredTypes
   
   useEffect(() => {
-    axios.get('http://localhost:3001/api/pokemon/all')
+    axios.get('/api/pokemon/all')
       .then(res => {
         dispatch(setPokemon(res.data.pokemon))
         dispatch(setPokemonCount(res.data.count))
@@ -28,11 +28,11 @@ function App() {
   const changePage = async (pageNum) => {
     setCurrentPage(pageNum)
     if (doubleOption) {
-      const apiCall2 = await axios.post(`http://localhost:3001/api/type/filtered/onlyboth`, { data: { filteredTypes, offset: ((pageNum*20)-20) } })
+      const apiCall2 = await axios.post(`/api/type/filtered/onlyboth`, { data: { filteredTypes, offset: ((pageNum*20)-20) } })
       dispatch(setPokemon(apiCall2.data.pokemon))
       dispatch(setPokemonCount(apiCall2.data.count))
     } else {
-      const apiCall1 = await axios.post(`http://localhost:3001/api/type/filtered`, { data: { filteredTypes, offset: ((pageNum*20)-20) } })
+      const apiCall1 = await axios.post(`/api/type/filtered`, { data: { filteredTypes, offset: ((pageNum*20)-20) } })
       
       dispatch(setPokemon(apiCall1.data.pokemon))
       dispatch(setPokemonCount(apiCall1.data.count))

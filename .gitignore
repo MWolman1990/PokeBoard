@@ -1,1 +1,27 @@
 /node_modules
+/poke-board/node_modules
+
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/poke-board/node_modules
+/poke-board/.pnp
+/poke-board.pnp.js
+
+# testing
+/poke-board/coverage
+
+# production
+/poke-board/build
+
+# misc
+/poke-board/.DS_Store
+/poke-board/.env.local
+/poke-board/.env.development.local
+/poke-board/.env.test.local
+/poke-board/.env.production.local
+
+/poke-board/npm-debug.log*
+/poke-board/yarn-debug.log*
+/poke-board/yarn-error.log*
