@@ -39,14 +39,16 @@ const Sidebar = (props) => {
             <div className="typeSection p-3 row">
                 {
                     types.length > 0 &&
-                    types.map((t, i) => 
-                        <div class="form-check form-switch float-left col m-1 flex-wrap">
+                    types.map((t, i) =>
+                    <div className="col">
+                        <div class="form-check form-switch float-left m-1">
                             <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onClick={() => handleChange(t.name)}/>
                             <label class="form-check-label" for="flexSwitchCheckDefault">{t.name}</label>
                         </div>
+                    </div>
                     )
                 }
-                <div class="form-check">
+                <div class="form-check mt-2">
                     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onClick={toggleOption}/>
                     <label class="form-check-label" for="flexCheckDefault">
                         Only show double-types
