@@ -15,7 +15,7 @@ function App() {
   const displayPokemon = useSelector(state => state.pokemon)['pokemon']
   const pokemonCount = useSelector(state => state.pokemon.count)
   const filteredTypes = useSelector(state => state.filter.filters).filteredTypes
-  
+
   useEffect(() => {
     axios.get('/api/pokemon/all')
       .then(res => {
@@ -53,7 +53,7 @@ function App() {
       <div className="main row">
         <Sidebar currentPage={currentPage} setCurrentPage={setCurrentPage} doubleOption={doubleOption} setDoubleOption={setDoubleOption}/>
         <div className="col-md-10 display-container p-0">
-          <div className="main-display overflow-auto center d-flex flex-wrap px-3">
+          <div className="main-display overflow-auto center d-flex flex-wrap p-3">
             {
               displayPokemon.length > 0 &&
               displayPokemon.map((pokeData, i) => <PokeCard key={pokeData.id} data={pokeData}></PokeCard>)
@@ -73,7 +73,7 @@ function App() {
       <div className="row header-row border-top">
         <nav className="navbar navbar-expand-md navbar-light bg-light">
             <div className="container-fluid justify-content-end">
-              <span className="">CodeToad, LLC.</span>
+              <span className="">CodeToad</span>
             </div>
           </nav>
       </div>

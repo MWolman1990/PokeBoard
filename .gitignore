@@ -24,3 +24,5 @@
 /poke-board/npm-debug.log*
 /poke-board/yarn-debug.log*
 /poke-board/yarn-error.log*
+
+/devUtils

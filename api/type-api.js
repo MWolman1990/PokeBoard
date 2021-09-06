@@ -62,7 +62,6 @@ router.post('/filtered/onlyboth', async (req, res) => {
         return obj
     }(justNames)
 
-    console.log(' ')
     const matchedNames = Object.keys(dataMap).filter(e => (dataMap[e] === 2))
     const pokemonCount = matchedNames.length
     const dataBuffer4 = matchedNames.map(el => axios.get(`https://pokeapi.co/api/v2/pokemon/${el}`))
@@ -71,6 +70,90 @@ router.post('/filtered/onlyboth', async (req, res) => {
     const mappedData = apiCall5.map(elem => elem.data)
 
     res.send({ pokemon: mappedData, count: pokemonCount })
+})
+
+router.get('/calculate/relations/:id', async (req, res) => {
+    const { id } = req.params
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
+    const { data } = response
+    const { types, name } = data
+    const apiUrl = types.map(type => type.type.url)
+    const proxyCalls = apiUrl.map(url => axios.get(url))
+    const typeResponse = await axios.all(proxyCalls)
+    const typeData= typeResponse.map(resp => resp.data)
+    const damageRelations = typeData.map(item => item.damage_relations)
+    const damageFrom = {}
+
+    damageRelations.map(dr => {
+        const keys = Object.keys(dr)
+        
+        keys.forEach(key => {
+            if (key.search('from') !== -1) {
+                damageFrom[key] = damageFrom[key] || []
+                damageFrom[key].push(...dr[key])
+            }
+        })
+    })
+    console.log(damageFrom, name)
+    const damageFromKeys = Object.keys(damageFrom)
+    
+    const convertedToNumbers = {}
+    damageFromKeys.forEach(key => {
+        if (key === 'double_damage_from') {
+            damageFrom[key].forEach(type2 => {
+                convertedToNumbers[type2.name] = convertedToNumbers[type2.name] || 1
+                convertedToNumbers[type2.name] *= 2
+            })
+        } else if (key === 'half_damage_from') {
+            damageFrom[key].forEach(type2 => {
+                convertedToNumbers[type2.name] = convertedToNumbers[type2.name] || 1
+                convertedToNumbers[type2.name] *= .5
+            })
+        } else if (key === 'no_damage_from') {
+            damageFrom[key].forEach(type2 => {
+                convertedToNumbers[type2.name] = convertedToNumbers[type2.name] || 1
+                convertedToNumbers[type2.name] *= 0
+            })
+        }
+        
+    })
+
+    const finalResults = {
+        superStrong: [],
+        strong: [],
+        even: [],
+        weak: [],
+        superWeak: [],
+        noDamage: []
+    }
+    const ctnKeys = Object.keys(convertedToNumbers)
+
+    ctnKeys.forEach(key => {
+        switch(convertedToNumbers[key]) {
+            case 4:
+                finalResults.superWeak.push(key)
+                break
+            case 2:
+                finalResults.weak.push(key)
+                break
+            case 1:
+                finalResults.even.push(key)
+                break
+            case .5:
+                finalResults.strong.push(key)
+                break
+            case .25:
+                finalResults.superStrong.push(key)
+                break
+            case 0:
+                finalResults.noDamage.push(key)
+                break
+            default:
+                break
+        }
+    })
+
+    res.send(finalResults)
 })
 
 module.exports = router
