@@ -40,7 +40,7 @@ const Sidebar = (props) => {
                 {
                     types.length > 0 &&
                     types.map((t, i) =>
-                    <div className="col">
+                    <div className="type-item-col">
                         <div class="form-check form-switch float-left m-1">
                             <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onClick={() => handleChange(t.name)}/>
                             <label class="form-check-label" for="flexSwitchCheckDefault">{t.name}</label>
@@ -48,14 +48,18 @@ const Sidebar = (props) => {
                     </div>
                     )
                 }
-                <div class="form-check mt-2">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onClick={toggleOption}/>
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Only show double-types
-                    </label>
-                </div>
             </div>
-            
+            <div className="row p-3 pt-0">
+                <div className="col">
+                    <div class="form-check m-1">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onClick={toggleOption}/>
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Only show double-type pokemon
+                            </label>
+                    </div>
+                </div>
+                
+            </div>
         </div>
     )
 }

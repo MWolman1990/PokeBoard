@@ -1,3 +1,124 @@
+:root {
+  --type-color-Normal: #A8A77A;
+  --type-color-fire: #EE8130;
+  --type-color-water:  #6390F0;
+  --type-color-electric:  #F7D02C;
+  --type-color-grass:  #7AC74C;
+  --type-color-ice:  #96D9D6;
+  --type-color-fighting:  #C22E28;
+  --type-color-poison:  #A33EA1;
+  --type-color-ground:  #E2BF65;
+  --type-color-flying:  #A98FF3;
+  --type-color-psychic:  #F95587;
+  --type-color-bug:  #A6B91A;
+  --type-color-rock:  #B6A136;
+  --type-color-ghost:  #735797;
+  --type-color-dragon:  #6F35FC;
+  --type-color-dark:  #705746;
+  --type-color-steel:  #B7B7CE;
+  --type-color-fairy:  #D685AD;
+}
+
+.normal-bg {
+  background-color: var(--type-color-Normal);
+}
+
+.fire-bg {
+  background-color: var(--type-color-fire);
+}
+
+.grass-bg {
+  background-color: var(--type-color-grass);
+}
+
+.water-bg {
+  background-color: var(--type-color-water);
+}
+
+.electric-bg {
+  background-color: var(--type-color-electric);
+}
+
+.ice-bg {
+  background-color: var(--type-color-ice);
+}
+
+.fighting-bg {
+  background-color: var(--type-color-fighting);
+}
+
+.poison-bg {
+  background-color: var(--type-color-poison);
+}
+
+.ground-bg {
+  background-color: var(--type-color-ground);
+}
+
+.flying-bg {
+  background-color: var(--type-color-flying);
+}
+
+.psychic-bg {
+  background-color: var(--type-color-psychic);
+}
+
+.bug-bg {
+  background-color: var(--type-color-bug);
+}
+
+.rock-bg {
+  background-color: var(--type-color-rock);
+}
+
+.ghost-bg {
+  background-color: var(--type-color-ghost);
+}
+
+.dragon-bg {
+  background-color: var(--type-color-dragon);
+}
+
+.dark-bg {
+  background-color: var(--type-color-dark);
+}
+
+.steel-bg {
+  background-color: var(--type-color-steel);
+}
+
+.fairy-bg {
+  background-color: var(--type-color-fairy);
+}
+
+.box-60pct {
+  width: 60%;
+  height: 60%;
+}
+
+.box-50px {
+  width: 50px;
+  height: 50px;
+}
+
+.box-30px {
+  width: 30px;
+  height: 30px;
+}
+
+.circle-container {
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  box-shadow: 0 0 10px;
+}
+
+.custom-list {
+  max-width: 100%;
+}
+
 html,
 body,
 #root,
@@ -21,6 +142,13 @@ body,
   content: "";
   flex: auto;
 } */
+
+@media (min-width: 1525px) {
+    .type-item-col {
+      flex: 0 0 auto;
+      width: 50% !important;
+  }
+}
 
 body {
   margin: 0;

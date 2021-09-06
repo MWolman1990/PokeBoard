@@ -39,6 +39,47 @@ router.post('/filtered', async (req, res) => {
     }
 })
 
+router.get('/onlyonetype', async (req, res) => {
+    try {
+        const targetType = 'normal'
+        const allTypeCalls = new Array(18)
+        .fill(0)
+        .map((e, i) =>
+            axios.get(`https://pokeapi.co/api/v2/type/${i+1}/`)
+        )
+        const execAllTypeCalls = await axios.all(allTypeCalls)
+        const typeObj = {}
+        const targetTypeArray = []
+        const allOtherTypes = []
+
+        execAllTypeCalls.forEach(r => {
+            console.log('')
+            console.log(r.data.name)
+            console.log('------------------------')
+            r.data.pokemon.forEach(p => {
+                console.log(p.pokemon.name)
+            })
+            console.log('')
+            typeObj[r.data.name] = r.data.pokemon.map(p => p.pokemon.name)
+
+            switch (r.data.name) {
+                case targetType:
+                    targetTypeArray.push(...r.data.pokemon.map(p => p.pokemon.name))
+                    break
+                default:
+                    allOtherTypes.push(...r.data.pokemon.map(p => p.pokemon.name))
+                    break
+            }
+        })
+        const finalArray = targetTypeArray.filter(t => allOtherTypes.indexOf(t) === -1)
+        res.send({ targetTypeArray, allOtherTypes, finalArray })
+        // Split into two arrays, the target type array and an array of the pokemon names of all the other types
+    } catch (e) {
+        console.log(e)
+        res.send(e)
+    }
+})
+
 router.post('/filtered/onlyboth', async (req, res) => {
     const { data } = req.body
     const { filteredTypes, offset } = data
@@ -94,7 +135,7 @@ router.get('/calculate/relations/:id', async (req, res) => {
             }
         })
     })
-    console.log(damageFrom, name)
+    
     const damageFromKeys = Object.keys(damageFrom)
     
     const convertedToNumbers = {}
