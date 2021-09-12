@@ -5,7 +5,10 @@ export const filterSlice = createSlice({
     initialState: {
         filters: {
             types: [],
-            filteredTypes: []
+            filteredTypes: [],
+            singleOption: false,
+            doubleOption: false,
+            nameSearch: ''
         }
     },
     reducers: {
@@ -18,10 +21,13 @@ export const filterSlice = createSlice({
             } else {
                 state.filters.filteredTypes = state.filters.filteredTypes.filter(e => e !== action.payload)
             }
+        },
+        setNameSearch: (state, action) => {
+            state.filters.nameSearch = action.payload
         }
     }
 })
 
-export const { setTypes, setFilteredTypes } = filterSlice.actions
+export const { setTypes, setFilteredTypes, setNameSearch } = filterSlice.actions
 
 export default filterSlice.reducer

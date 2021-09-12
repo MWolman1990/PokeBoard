@@ -17,7 +17,7 @@ import dragon from './type-icons/dragon.svg'
 import steel from './type-icons/steel.svg'
 import fairy from './type-icons/fairy.svg'
 
-export default {
+const defaultExport = {
     normal,
     fire,
     water,
@@ -37,3 +37,5 @@ export default {
     steel,
     fairy,
 }
+
+export default defaultExport

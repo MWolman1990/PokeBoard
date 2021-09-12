@@ -17,11 +17,11 @@
 }
 
 .main-display {
-    height: 80%;
+    height: 85%;
 }
 
 .pagination-bar {
-    height: 20%;
+    height: 15%;
 }
 
 .center {
@@ -42,4 +42,10 @@
 
 .w-40 {
   width: 40% !important;
+}
+
+.fixed-5050 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
 }

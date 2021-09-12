@@ -7,4 +7,7 @@ export default configureStore({
     filter: filterReducer,
     pokemon: pokemonReducer
   },
+  middleware: getDefaultMiddleware => getDefaultMiddleware({
+    serializableCheck: false
+  })
 })

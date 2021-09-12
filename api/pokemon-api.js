@@ -3,12 +3,28 @@ const router = express.Router()
 const request = require('request')
 const axios = require('axios')
 
+router.post('/searchbyname', async (req, res) => {
+    const { body } = req
+    const { nameFilter, offset } = body
+    const resp = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=2000`)
+    const { data } = resp
+    const { results } = data
+    const names = results.map(item => item.name)
+    const filteredNames = names.filter(element => element.startsWith(nameFilter))
+    const count = filteredNames.length
+    const slicedFilteredNames = filteredNames.splice(offset, 20)
+    const nameCalls = slicedFilteredNames.map(name => axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`))
+    const pokeData = await axios.all(nameCalls)
+    const finalPokeData = pokeData.map(item => item.data)
+    res.send({ finalPokeData, offset, count })
+})
+
 router.get('/all', (req, res) => {
     request.get('https://pokeapi.co/api/v2/pokemon', (err, resp, body) => {
         const parsed = JSON.parse(body)
         const { results, count } = parsed
         const pokeUrls = results.map(e => axios.get(e.url))
-        
+        console.log(count)
         axios.all(pokeUrls)
             .then(con => {
                 const arr = con.map(item => item.data)
@@ -39,5 +55,7 @@ router.get('/', (req, res) => {
         })
         .catch(err => res.send(err))
 })
+
+
 
 module.exports = router
